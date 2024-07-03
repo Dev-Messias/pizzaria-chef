@@ -1,13 +1,31 @@
+import {useContext, FormEvent} from 'react'
 import Head from "next/head";
 import Image from "next/image";
 import { Input } from '../components/ui/input';
 import { Button } from "../components/ui/Button";
+
+import {AuthContext} from '../contexts/AuthContext';
 
 import Link from 'next/link';
 
 import logo from '../assets/pizza.png'
 
 export default function Home() {
+
+  const {signIn} = useContext(AuthContext);
+
+
+  async function handleLogin(event: FormEvent){
+    event.preventDefault();//não recarregar a pagina
+
+    let data = {
+      email: "Algum@gmail.com",
+      password: "123456"
+    }
+
+    await signIn(data);
+  }
+
   return (
     <>
       <Head>
@@ -23,7 +41,7 @@ export default function Home() {
             <h3 className="font-semibold text-red-700 text-3xl" >Login</h3>
             <p className="text-md text-slate-700 font-semibold mb-6 mt-3" >Faça login e Gerencie sua pizzaria.</p>
             <div className="w-full flex flex-col ">
-              <form  >
+              <form onSubmit={handleLogin}  >
                 <Input className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " placeholder="Digite seu email" type="text" />
                 <Input className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " placeholder="Sua senha" type="password" />
 
