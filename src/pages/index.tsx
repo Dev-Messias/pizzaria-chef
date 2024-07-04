@@ -1,4 +1,4 @@
-import {useContext, FormEvent} from 'react'
+import {useContext, FormEvent, useState} from 'react'
 import Head from "next/head";
 import Image from "next/image";
 import { Input } from '../components/ui/input';
@@ -13,14 +13,18 @@ import logo from '../assets/pizza.png'
 export default function Home() {
 
   const {signIn} = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [loading, setLoading] = useState(false);
 
 
   async function handleLogin(event: FormEvent){
     event.preventDefault();//não recarregar a pagina
 
     let data = {
-      email: "Algum@gmail.com",
-      password: "123456"
+      email,
+      password
     }
 
     await signIn(data);
@@ -42,12 +46,24 @@ export default function Home() {
             <p className="text-md text-slate-700 font-semibold mb-6 mt-3" >Faça login e Gerencie sua pizzaria.</p>
             <div className="w-full flex flex-col ">
               <form onSubmit={handleLogin}  >
-                <Input className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " placeholder="Digite seu email" type="text" />
-                <Input className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " placeholder="Sua senha" type="password" />
+                <Input 
+                  className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " 
+                  placeholder="Digite seu email" 
+                  type="text" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Input 
+                  className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " 
+                  placeholder="Sua senha" 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
 
                 <Button
                   type="submit"
-                  loading={false}
+                  loading={loading}
                   className="w-full flex flex-row items-center justify-center py-2 rounded-2xl md:mb-2 text-slate-50 font-bold mt-2 bg-gradient-to-r from-rose-800 to-pink-950"
 
                 >Acessar</Button>
