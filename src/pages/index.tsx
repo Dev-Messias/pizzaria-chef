@@ -22,12 +22,21 @@ export default function Home() {
   async function handleLogin(event: FormEvent){
     event.preventDefault();//não recarregar a pagina
 
+    if(email === '' || password === ''){
+      alert("Preencha os dados")
+      return;
+    }
+
+    setLoading(true)
+
     let data = {
       email,
       password
     }
 
     await signIn(data);
+
+    setLoading(false)
   }
 
   return (

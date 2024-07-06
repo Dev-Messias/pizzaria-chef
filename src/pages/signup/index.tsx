@@ -1,14 +1,45 @@
-
+import {useState, FormEvent, useContext} from 'react'
 import Head from "next/head";
 import Image from "next/image";
 import { Input } from '../../components/ui/input';
 import { Button } from "../../components/ui/Button";
 
 import Link from 'next/link';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import logo from '../../assets/pizza.png'
 
 export default function SignUp() {
+
+  const {signUp} = useContext(AuthContext);
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPessword] = useState('')
+
+  const [loading, setLoading] = useState(false);
+
+  async function handleSignUp(event: FormEvent){
+    event.preventDefault();
+
+    if(name === '' || email === '' || password === ''){
+      alert("Preencha todos os campos");
+      return
+    }
+
+    setLoading(true);
+
+    let data = {
+      name, 
+      email,
+      password,
+
+    }
+
+    await signUp(data);
+    setLoading(false);
+  }
+
   return (
     <>
       <Head>
@@ -24,14 +55,32 @@ export default function SignUp() {
             <h3 className="font-semibold text-red-700 text-3xl" >Criando sua conta</h3>
             <p className="text-md text-slate-700 font-semibold mb-6 mt-3" >Faça seu cadastro para Gerencie sua pizzaria.</p>
             <div className="w-full flex flex-col ">
-              <form  >
-                <Input className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " placeholder="Digite seu nome" type="text" />
-                <Input className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " placeholder="Digite seu email" type="text" />
-                <Input className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " placeholder="Sua senha" type="password" />
+              <form onSubmit={handleSignUp} >
+                <Input 
+                  className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " 
+                  placeholder="Digite seu nome" 
+                  type="text" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <Input 
+                  className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " 
+                  placeholder="Digite seu email" 
+                  type="text" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Input 
+                  className=" w-full mb-4 h-10  border-b-[1px] border-slate-800 bg-transparent  " 
+                  placeholder="Sua senha" 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPessword(e.target.value)}
+                />
 
                 <Button
                   type="submit"
-                  loading={false}
+                  loading={loading}
                   className="w-full flex flex-row items-center justify-center py-2 rounded-2xl md:mb-2 text-slate-50 font-bold mt-2 bg-gradient-to-r from-rose-800 to-pink-950"
 
                 >Cadastrar</Button>
