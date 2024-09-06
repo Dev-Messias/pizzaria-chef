@@ -7,9 +7,37 @@ import Image from 'next/image'
 import { Separator } from '@/components/ui/separator';
 import { Lock, Mail } from 'lucide-react';
 import Link from 'next/link';
+import { api } from '@/services/api';
+import { redirect } from 'next/navigation';
 
 
 export default function Home() {
+  async function handleLogin(formData: FormData) {
+    "use server"
+
+    const email = formData.get("email")
+    const password = formData.get("password")
+
+    if(email === "" || password === ""){
+      return;
+    }
+
+    try {
+
+    const response = await api.post("/session", {
+      email,
+      password
+    })
+
+    console.log(response.data)
+      
+    } catch (err) {
+      console.log(err)
+      return;
+    }
+
+    redirect("/dashboard")
+  }
   return (
     <main className='w-full h-screen bg-red-800 flex flex-col items-center justify-center' >
       <div className='w-full px-3 max-w-xl m-auto' >
@@ -30,7 +58,7 @@ export default function Home() {
           </CardHeader>
 
           <CardContent>
-            <form className='flex flex-col gap-4' >
+            <form action={handleLogin} className='flex flex-col gap-4' >
               <div className='flex flex-col gap-2' >
                 <div className='flex flex-row items-center gap-1 mb-1' >
                   <Mail className='w-4 h-4 select-none' />
@@ -57,7 +85,7 @@ export default function Home() {
               </div>
 
               <div className='w-full flex flex-col items-center px-10 mt-2 mb-3' >
-                <Button className='w-full' >Acessar</Button>
+                <Button type='submit' className='w-full' >Acessar</Button>
               </div>
               <Separator/>
               <div className='w-full flex flex-col items-center' >
