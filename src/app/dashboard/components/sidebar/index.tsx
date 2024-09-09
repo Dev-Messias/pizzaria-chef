@@ -1,3 +1,4 @@
+"use client"
 import { Sheet, SheetTrigger, SheetContent } from '../../../../components/ui/sheet';
 import { Button } from '../../../../components/ui/button';
 import Link from 'next/link';
@@ -5,8 +6,18 @@ import { ChartBarStacked, Home, LogOut, Menu, Package, PanelBottom, Settings2, S
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '../../../../components/ui/tooltip';
 import logoSistema from '../../../../assets/chef-pizza.jpg'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { deleteCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 
 export function Sidebar() {
+    const router = useRouter();
+
+    async function handleLogout() {
+
+        deleteCookie("session", { path: "/" })
+        router.replace("/");
+    }
+
     return (
         <div className="flex w-full flex-col bg-muted/40" >
 
@@ -60,7 +71,7 @@ export function Sidebar() {
                             <TooltipContent side='right' >Produtos</TooltipContent>
                         </Tooltip>
 
-                       
+
                     </TooltipProvider>
                 </nav>
 
@@ -68,12 +79,13 @@ export function Sidebar() {
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild >
-                                <Link href="/"
+                                <form action={handleLogout}
                                     className='flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground'
                                 >
-                                    <LogOut className='h-4 w-4 text-red-500' />
+
+                                    <button type='submit' ><LogOut className='h-4 w-4 text-red-500' /></button>
                                     <span className='sr-only' >Sair</span>
-                                </Link>
+                                </form>
                             </TooltipTrigger>
                             <TooltipContent side='right' >Sair</TooltipContent>
                         </Tooltip>
@@ -121,8 +133,8 @@ export function Sidebar() {
                                     className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
                                     prefetch={false}
                                 >
-                                   <ChartBarStacked className='h-4 w-4' />
-                                   Categoria
+                                    <ChartBarStacked className='h-4 w-4' />
+                                    Categoria
                                 </Link>
 
                                 <Link

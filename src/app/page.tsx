@@ -34,7 +34,7 @@ export default function Home() {
       return;
     }
 
-    console.log(response.data)
+    //console.log(response.data)
 
     const expressTime = 60 * 60 * 24 * 30 * 1000; //30 dias em minutos rsrs
     cookies().set("session", response.data.token, {
