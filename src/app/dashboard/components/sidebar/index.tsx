@@ -49,7 +49,7 @@ export function Sidebar() {
 
                         <Tooltip>
                             <TooltipTrigger asChild >
-                                <Link href="#"
+                                <Link href="/dashboard/category"
                                     className='flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground'
                                 >
                                     <ChartBarStacked className='h-4 w-4' />
@@ -61,7 +61,7 @@ export function Sidebar() {
 
                         <Tooltip>
                             <TooltipTrigger asChild >
-                                <Link href="#"
+                                <Link href="/dashboard/product"
                                     className='flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground'
                                 >
                                     <Package className='h-4 w-4' />
@@ -129,7 +129,7 @@ export function Sidebar() {
                                 </Link>
 
                                 <Link
-                                    href='#'
+                                    href="/dashboard/category"
                                     className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
                                     prefetch={false}
                                 >
@@ -138,7 +138,7 @@ export function Sidebar() {
                                 </Link>
 
                                 <Link
-                                    href='#'
+                                    href="/dashboard/product"
                                     className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
                                     prefetch={false}
                                 >
