@@ -8,6 +8,7 @@ import logoSistema from '../../../../assets/chef-pizza.jpg'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 export function Sidebar() {
     const router = useRouter();
@@ -15,6 +16,7 @@ export function Sidebar() {
     async function handleLogout() {
 
         deleteCookie("session", { path: "/" })
+        toast.success("🏃- Logout feito com sucesso!")
         router.replace("/");
     }
 
