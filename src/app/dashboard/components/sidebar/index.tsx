@@ -1,5 +1,5 @@
 "use client"
-import { Sheet, SheetTrigger, SheetContent } from '../../../../components/ui/sheet';
+import { Sheet, SheetTrigger, SheetContent, SheetClose } from '../../../../components/ui/sheet';
 import { Button } from '../../../../components/ui/button';
 import Link from 'next/link';
 import { ChartBarStacked, Home, LogOut, Menu, Package, PanelBottom, Settings2, ShoppingBag, Users } from 'lucide-react';
@@ -120,33 +120,36 @@ export function Sidebar() {
                                     </Avatar>
                                     <span className='sr-only' >Pizzaria-Chef</span>
                                 </Link>
+                                <SheetClose asChild>
+                                    <Link
+                                        href='/dashboard'
+                                        className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
+                                        prefetch={false}
+                                    >
+                                        <Home className='h5 w-5 transition-all' />
+                                        Inicio
+                                    </Link>
+                                </SheetClose>
+                                <SheetClose asChild>
+                                    <Link
+                                        href="/dashboard/category"
+                                        className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
 
-                                <Link
-                                    href='#'
-                                    className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
-                                    prefetch={false}
-                                >
-                                    <Home className='h5 w-5 transition-all' />
-                                    Inicio
-                                </Link>
-
-                                <Link
-                                    href="/dashboard/category"
-                                    className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
-                                    prefetch={false}
-                                >
-                                    <ChartBarStacked className='h-4 w-4' />
-                                    Categoria
-                                </Link>
-
-                                <Link
-                                    href="/dashboard/product"
-                                    className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
-                                    prefetch={false}
-                                >
-                                    <Package className='h5 w-5 transition-all' />
-                                    Produtos
-                                </Link>
+                                    >
+                                        <ChartBarStacked className='h-4 w-4' />
+                                        Categoria
+                                    </Link>
+                                </SheetClose>
+                                <SheetClose asChild>
+                                    <Link
+                                        href="/dashboard/product"
+                                        className='flex items-center  text-muted-foreground gap-4 hover:text-foreground'
+                                        prefetch={false}
+                                    >
+                                        <Package className='h5 w-5 transition-all' />
+                                        Produtos
+                                    </Link>
+                                </SheetClose>
                             </nav>
                         </SheetContent>
                     </Sheet>
