@@ -1,5 +1,12 @@
 # Pizzaria-Chef
  🚀 Este repositório contém o código-fonte de um sistema completo para gerenciar pedidos de uma pizzaria, desenvolvido com Next.js para a interface de usuário e Node.js com TypeScript para o backend. O sistema permite que garçons realizem pedidos diretamente das mesas, otimizando o fluxo de trabalho do restaurante e garantindo um atendimento rápido e eficiente.<br><br>
+<div>
+    Deploy:
+     <a href="https://pizzaria-chef.vercel.app/" >
+      https://pizzaria-chef.vercel.app/
+    </a>
+   
+</div><br>
 <img src="./src/assets/imgred.png" alt="Nodejs">
 
 > A Pizzaria do Chef foi um projeto desenvolvido em conjunto durante o curso Fábrica de Aplicativos, onde apliquei meus conhecimentos em front-end para aprimorar o design do sistema, adicionando um toque pessoal e melhorias visuais. O projeto me permitiu combinar aprendizado com prática, enquanto contribuía para a criação de uma interface moderna e funcional.
