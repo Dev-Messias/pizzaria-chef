@@ -8,7 +8,7 @@
    
 </div><br>
 
-<img src="./src/assets/imgred.png" alt="Nodejs">
+![git-tela](https://github.com/user-attachments/assets/cc8b7330-2a63-4895-8402-2ef0a001412f)
 
 > A Pizzaria do Chef foi um projeto desenvolvido em conjunto durante o curso Fábrica de Aplicativos, onde apliquei meus conhecimentos em front-end para aprimorar o design do sistema, adicionando um toque pessoal e melhorias visuais. O projeto me permitiu combinar aprendizado com prática, enquanto contribuía para a criação de uma interface moderna e funcional.
 
